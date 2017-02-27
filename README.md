@@ -1,0 +1,2 @@
+# AndroidTestPyScripts
+Android测试中常用到的一些操作，通过python实现成脚本，方便测试
