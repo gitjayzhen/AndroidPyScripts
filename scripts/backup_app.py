@@ -4,7 +4,7 @@
 
 import os
 
-from scriptUtils import utils
+from ScriptUtils import utils
 
 #adb backup命令可以备份，该脚本只用于备份设备上安装的第三方应用，将apk保存在当前目录下的backup_app文件夹中
 
@@ -20,7 +20,7 @@ def get_apk_list():
 def backup_app():
     apps = get_apk_list()
     for apk in apps:
-        utils.adb("pull %s backup_app" %apk).wait()
+        utils.adb("pull %s backup_app" % apk).wait()
         print "pull %s succeed." %apk
 
 if __name__ == "__main__":

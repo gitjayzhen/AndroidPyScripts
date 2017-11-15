@@ -4,8 +4,8 @@
 import os
 import tempfile
 
-from scriptUtils import utils
-from scriptUtils.exception import SriptException
+from ScriptUtils import utils
+from ScriptUtils.exception import SriptException
 
 #获取设备上当前应用的包信息，结果存放于当前目录下的PackageInfo.txt中
 
@@ -29,7 +29,7 @@ def get_match_apk(package_name):
         list.append(packages.split(":")[-1].split("=")[0])
     apk_name = list[0].split("/")[-1]
 
-    utils.adb("pull %s %s" %(list[0], tempFile)).wait()
+    utils.adb("pull %s %s" % (list[0], tempFile)).wait()
 
     return PATH("%s/%s" %(tempFile, apk_name))
 

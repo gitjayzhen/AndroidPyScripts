@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import Tkinter  as tk
 import os
 import platform
 import re
 import subprocess
 import time
-import Tkinter  as tk
 import ttk
+
 import exception
 
 serialno_num = ""

@@ -6,7 +6,7 @@ import string
 import sys
 import time
 
-from scriptUtils import utils
+from ScriptUtils import utils
 
 #需要Android4.4及4.4以上版本，运行脚本后可录制设备上的操作，默认使用手机分辨率，时间3min。手动按Enter结束录制。
 #录制结果存放于当前目录下的video目录下
@@ -27,7 +27,7 @@ def record():
     if not os.path.isdir(path):
         os.makedirs(path)
 
-    utils.adb("pull /data/local/tmp/video.mp4 %s"  %PATH("%s/%s.mp4" %(path, utils.timestamp()))).wait()
+    utils.adb("pull /data/local/tmp/video.mp4 %s" % PATH("%s/%s.mp4" % (path, utils.timestamp()))).wait()
 
 if __name__ == "__main__":
     sdk = string.atoi(utils.shell("getprop ro.build.version.sdk").stdout.read())

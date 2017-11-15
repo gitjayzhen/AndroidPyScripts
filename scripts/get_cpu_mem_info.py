@@ -1,10 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import string
-
-from scriptUtils import utils
 from pychartdir import *
+
+from ScriptUtils import utils
 
 PATH = lambda p: os.path.abspath(p)
 
@@ -21,7 +20,7 @@ def top():
     cpu = []
     mem = []
 
-    top_info = utils.shell("top -n %s | %s %s$" %(str(times), utils.find_util, pkg_name)).stdout.readlines()
+    top_info = utils.shell("top -n %s | %s %s$" % (str(times), utils.find_util, pkg_name)).stdout.readlines()
 #  PID PR CPU% S #THR VSS RSS PCY UID Name
     for info in top_info:
         #temp_list = del_space(info)
@@ -97,7 +96,7 @@ def line_chart():
         os.makedirs(path)
 
     #图片保存至脚本当前目录的chart目录下
-    c.makeChart(PATH("%s/%s.png" %(path, utils.timestamp())))
+    c.makeChart(PATH("%s/%s.png" % (path, utils.timestamp())))
 
 if __name__ == "__main__":
     print "Starting get top information..."

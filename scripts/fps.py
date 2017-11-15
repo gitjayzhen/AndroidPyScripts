@@ -2,11 +2,11 @@
 # -*- coding: utf-8 -*
 
 
-import time
 import os
 import sys
+import time
 
-from scriptUtils import utils
+from ScriptUtils import utils
 
 PATH = lambda p: os.path.abspath(p)
 
@@ -149,7 +149,7 @@ def write_csv(*list):
     path = PATH("{}/fps_data".format(os.getcwd()))
     if not os.path.isdir(path):
         os.makedirs(path)
-    f = open(PATH("%s/fps-%s.csv" %(path, utils.timestamp())), "w")
+    f = open(PATH("%s/fps-%s.csv" % (path, utils.timestamp())), "w")
     times = list[0]
     fps = list[1]
     jankniess = list[2]

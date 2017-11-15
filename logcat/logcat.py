@@ -1,18 +1,19 @@
 # coding=utf-8
 
-#用法: logcat -v time
+# 用法命令行执行: logcat.py -v time
+# 对不同级别的日志进行高亮处理
 
 import sys
 import os
 import ctypes
 import re
 
-#输出类别标志
+# 输出类别标志
 STD_INPUT_HANDLE = -10
 STD_OUTPUT_HANDLE= -11
 STD_ERROR_HANDLE = -12
 
-#颜色
+# 颜色
 """
     0 = 黑色       8 = 灰色
     1 = 蓝色       9 = 淡蓝色
@@ -32,6 +33,7 @@ LIGHT_GREEN = 0x0b
 YELLOW = 0x0e
 WHITE = 0x0f
 PINK = 0x0d
+
 
 class Color(object):
     std_out_handle = ctypes.windll.kernel32.GetStdHandle(STD_OUTPUT_HANDLE)
@@ -72,13 +74,14 @@ class Color(object):
         sys.stdout.write(msg)
         self.reset_color()
 
+
 def main(argv):
     color = Color()
     command = ""
     if "-d" in argv:
-        command = "adb logcat %s" %" ".join(argv[1:])
+        command = "adb logcat %s" % " ".join(argv[1:])
     else:
-        command = "adb logcat -d %s" %" ".join(argv[1:])
+        command = "adb logcat -d %s" % " ".join(argv[1:])
     '''
     过滤项格式 : <tag>[:priority] , 标签:日志等级, 默认的日志过滤项是 " *:I " ;
     -- V : Verbose (明细);

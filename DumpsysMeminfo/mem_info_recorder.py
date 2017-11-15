@@ -1,27 +1,28 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-import os, time
+import os
+import time
 import subprocess
 import sys
 import re
 import platform
 from time import gmtime, strftime
 
+
 class MemInfo:
-     patternProcess = re.compile(r'\*\* MEMINFO in pid (\d+) \[(\S+)] \*\*')
-     patternTotalPSS = re.compile(r'TOTAL:\s+(\d+)')
+    patternProcess = re.compile(r'\*\* MEMINFO in pid (\d+) \[(\S+)] \*\*')
+    patternTotalPSS = re.compile(r'\s+TOTAL:\s+(\d+)')
 
-     pid = 0
-     processName = ''
-     datetime = ''
-     totalPSS = 0
+    pid = 0
+    processName = ''
+    datetime = ''
+    totalPSS = 0
 
-     def __init__(self, dump):
-         self.dump = dump
-         self._parse()
+    def __init__(self, dump):
+        self.dump = dump
+        self._parse()
 
-     def _parse(self):
+    def _parse(self):
         match = self.patternProcess.search(self.dump)
         if match:
             self.pid = match.group(1)
@@ -30,13 +31,19 @@ class MemInfo:
         if match:
             self.totalPSS = match.group(1)
 
-def dumpsys_process_meminfo(process):
-#     os.system('adb shell dumpsys meminfo "' + process)
+
+def dumpsys_meminfo(process):
+    """
+    获取运行时占用的内存：
+    :param process: pid 或 packageName
+    :return: 标准输出的数据给对象解析，并返回对象实例
+    """
     proc = subprocess.Popen(args='adb shell dumpsys meminfo "' + process + '"', stdout=subprocess.PIPE, stderr=sys.stderr, shell=True)
     out = proc.communicate()[0]
     return MemInfo(dump=out.decode(encoding='windows-1252'))
 
-def re_exe(process, dir, historyFileName, abstractFileName, interval=60):
+
+def execute_work(process, dir, historyFileName, abstractFileName, interval=60):
     if not os.path.exists(dir):
         os.makedirs(dir)
 
@@ -45,11 +52,11 @@ def re_exe(process, dir, historyFileName, abstractFileName, interval=60):
             try:
                 while True:
                     datetime = strftime("%Y-%m-%d %H:%M:%S", time.localtime(time.time()))
-                    memInfo = dumpsys_process_meminfo(process)
+                    memInfo = dumpsys_meminfo(process)
 
                     if memInfo.dump == '':
                         break
-                    elif memInfo.dump.startswith('No process found for:') :
+                    elif memInfo.dump.startswith('No process found for:'):
                         raise RuntimeError()
 
                     memInfo.datetime = datetime
@@ -72,30 +79,26 @@ def re_exe(process, dir, historyFileName, abstractFileName, interval=60):
 
 if __name__ == "__main__":
     usr = os.path.expanduser('~')
-    platform = platform.system()
-    desktop = ''
-
-    if platform == 'Windows':
-        desktop = r'\Desktop';
-
-    out_path = usr + desktop + r"\PythonAndroidMonitor"
+    plat = platform.system()
+    desktop = lambda plat: r'\Desktop' if plat == 'Windows' else ''
+    out_path = usr + desktop(plat) + r"\MeminfoMonitor"
     out_mem_history_file = "mem_history.txt"
     out_mem_abstract_file = "mem_abstract.CSV"
     dir = strftime("%Y-%m-%d %H-%M-%S", time.localtime(time.time()))
 
-    process = input("Please input the process name:")
+    # process = input("Please input the process name:")
     interval = 0
 
-    while not interval:
-        try:
-            interval = int(input('Please input the catch interval(second, value should >= 10):'))
-            if interval < 10:
-                raise Exception
-        except ValueError:
-            interval = 0
-            print("Please input integer!")
-        except Exception:
-            interval = 0
-            print("Value should >= 10!")
+    # while not interval:
+    #     try:
+    #         interval = int(input('Please input the catch interval(second, value should >= 10):'))
+    #         if interval < 10:
+    #             raise Exception
+    #     except ValueError:
+    #         interval = 0
+    #         print("Please input integer!")
+    #     except Exception:
+    #         interval = 0
+    #         print("Value should >= 10!")
 
-    re_exe(process=process, dir=out_path + "\\" + dir, historyFileName=out_mem_history_file, abstractFileName=out_mem_abstract_file, interval=interval)
+    execute_work(process='31851', dir=out_path + "\\" + dir, historyFileName=out_mem_history_file, abstractFileName=out_mem_abstract_file, interval=interval)

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding=utf-8 -*-
 
-from scriptUtils import utils
-
 import json
 import os
 import sys
+
+from ScriptUtils import utils
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -18,7 +18,7 @@ PATH = lambda p: os.path.abspath(p)
 def get_permission_list(package_name):
 
     permission_list = []
-    result_list = utils.shell("dumpsys package %s | %s android.permission" %(package_name, utils.find_util)).stdout.readlines()
+    result_list = utils.shell("dumpsys package %s | %s android.permission" % (package_name, utils.find_util)).stdout.readlines()
 
     for permission in result_list:
         permission_list.append(permission.strip())
