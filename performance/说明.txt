@@ -1,0 +1,12 @@
+#  自定义添加获取数据类：
+#  进入getData目录创建新的类，类格式：
+class 类名(threading.Thread):
+    def __init__(self):
+        super(类名, self).__init__()
+        pass
+
+    def run(self):
+        pass
+        
+#  进入run.py添加类并启动一个线程并写入对应数据
+    数据格式为列表 = [['0', '1', '2']]
