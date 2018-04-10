@@ -3,7 +3,7 @@
 
 from pychartdir import *
 
-from utils import utils
+from functions.utils import utils
 
 PATH = lambda p: os.path.abspath(p)
 

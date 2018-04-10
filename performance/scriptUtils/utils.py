@@ -169,7 +169,6 @@ def get_cpu_min_frequency():
     min_frequency = shell("cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq").stdout.readline().strip()
     return "{val}MHz".format(val=int(min_frequency) / 1000)
 
-
 # 截图保存至sd卡adbscreenshot目录并同步电脑
 def screenshot():
     if "directory" in shell("ls /sdcard/adbScreenShot").stdout.readline():
@@ -178,6 +177,7 @@ def screenshot():
     if os.path.exists("D://adbScreenShot"):
         shutil.rmtree("D://adbScreenShot")
     adb("pull /sdcard/adbscreenshot D://adbScreenShot")
+
 
 
 if __name__ == "__main__":

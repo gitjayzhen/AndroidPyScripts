@@ -194,7 +194,7 @@ class TestRunner(base_test_runner.BaseTestRunner):
 
     logfile = sys.stdout
     if self._options.single_step:
-      # Just print a heart-beat so that the outer buildbot functional won't timeout
+      # Just print a heart-beat so that the outer buildbot functions won't timeout
       # without response.
       logfile = _HeartBeatLogger()
     cwd = os.path.abspath(constants.DIR_SOURCE_ROOT)

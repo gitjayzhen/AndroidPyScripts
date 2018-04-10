@@ -2,7 +2,7 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE file.
 
-"""Helper functions common to native, java and host-driven test runners."""
+"""Helper functions functions to native, java and host-driven test runners."""
 
 import logging
 import sys

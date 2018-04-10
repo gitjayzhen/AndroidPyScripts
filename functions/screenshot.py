@@ -3,7 +3,7 @@
 
 import os
 
-from utils import utils
+from functions.utils import utils
 
 # 截取当前屏幕，截屏文件保存至当前目录下的screen文件夹中
 

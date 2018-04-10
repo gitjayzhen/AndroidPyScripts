@@ -5,7 +5,7 @@ import json
 import os
 import sys
 
-from utils import utils
+from functions.utils import utils
 
 reload(sys)
 sys.setdefaultencoding('utf8')

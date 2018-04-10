@@ -3,7 +3,7 @@
 
 import os
 
-from utils import utils
+from functions.utils import utils
 
 # adb backup命令可以备份，该脚本只用于备份设备上安装的第三方应用，将apk保存在当前目录下的backup_app文件夹中
 

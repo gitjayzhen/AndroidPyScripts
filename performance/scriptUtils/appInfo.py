@@ -8,15 +8,12 @@ pkg = "com.longtu.weifuhua"
 
 # 获取APP的UID
 def uid():
-    uid = utils.shell("ps | grep " + pkg + "| gawk '{ print $2 }'").stdout.readline().strip("\n")
+    uid = ''
     return uid
-
 
 # 获取APP的PID
 def pid():
-    pid = utils.shell(
-        "dumpsys package " + pkg + "|grep packageSetting|cut -d \"/\" -f2|cut -d \"}\" -f1").stdout.readline().strip(
-        "\n")
+    pid = ''
     return pid
 
 

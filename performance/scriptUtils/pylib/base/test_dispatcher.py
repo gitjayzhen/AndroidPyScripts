@@ -343,7 +343,7 @@ def RunTests(tests, runner_factory, devices, shard=True,
 
   if shard:
     # Generate a shared _TestCollection object for all test runners, so they
-    # draw from a common pool of tests.
+    # draw from a functions pool of tests.
     shared_test_collection = _TestCollection([_Test(t) for t in tests])
     test_collection_factory = lambda: shared_test_collection
     tag_results_with_device = False

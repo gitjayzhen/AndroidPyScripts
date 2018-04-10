@@ -6,7 +6,7 @@ import string
 import sys
 import time
 
-from utils import utils
+from functions.utils import utils
 
 # 需要Android4.4及4.4以上版本，运行脚本后可录制设备上的操作，默认使用手机分辨率，时间3min。手动按Enter结束录制。
 # 录制结果存放于当前目录下的video目录下

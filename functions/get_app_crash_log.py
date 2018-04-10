@@ -3,7 +3,7 @@
 
 import os
 
-from utils import utils
+from functions.utils import utils
 
 # app发生crash，未及时在logcat中抓取到有效log时，可通过该脚本获取到log，日志存放至crash_log目录
 

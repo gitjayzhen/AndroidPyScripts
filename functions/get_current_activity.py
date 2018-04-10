@@ -5,7 +5,7 @@
 import os
 import sys
 
-from utils import utils
+from functions.utils import utils
 
 # 获取设备上当前应用的“包名/Activity”，结果存放于当前目录下的CurrentActivity.txt
 

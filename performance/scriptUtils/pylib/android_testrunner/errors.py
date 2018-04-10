@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Defines common exception classes for this package."""
+"""Defines functions exception classes for this package."""
 
 
 class MsgException(Exception):

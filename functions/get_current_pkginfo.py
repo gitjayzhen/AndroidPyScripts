@@ -4,8 +4,8 @@
 import os
 import tempfile
 
-from utils import utils
-from utils.exception import SriptException
+from functions.utils.exception import SriptException
+from functions.utils import utils
 
 # 获取设备上当前应用的包信息，结果存放于当前目录下的PackageInfo.txt中
 

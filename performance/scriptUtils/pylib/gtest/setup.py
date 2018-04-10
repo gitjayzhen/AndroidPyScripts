@@ -21,7 +21,7 @@ from pylib.gtest import test_runner
 
 sys.path.insert(0,
                 os.path.join(constants.DIR_SOURCE_ROOT, 'build', 'util', 'lib',
-                             'common'))
+                             'functions'))
 import unittest_util # pylint: disable=F0401
 
 

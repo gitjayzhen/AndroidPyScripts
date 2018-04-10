@@ -21,7 +21,7 @@ from pylib.instrumentation import test_result
 
 sys.path.append(os.path.join(sys.path[0],
                              os.pardir, os.pardir, 'build', 'util', 'lib',
-                             'common'))
+                             'functions'))
 import perf_tests_results_helper # pylint: disable=F0401
 
 
