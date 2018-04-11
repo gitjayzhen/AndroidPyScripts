@@ -1,20 +1,19 @@
 # coding=utf-8
-from time import sleep
-from scriptUtils import excel, utils
-from getData import cpu, memory, fps, net, excutecpu, batteryTemp, cpuTemp
-
+from getData import memory, excutecpu
+from performance import cpu_temperature, battery_temperature, fps, cpu_using, net
+from utils import excel, utils
 
 ex = excel.WriteDate()  # 实例化一个ex写入对象
 pkg = "com.longtu.weifuhua"
 
 # 启动采集数据线程
 ecpu = excutecpu.WeiFuHua()
-cpuinfo = cpu.CpuData(pkg)
+cpuinfo = cpu_using.CpuData(pkg)
 meminfo = memory.MemoryData(pkg)
 fpsinfo = fps.RootFpsData()
 netinfo = net.NetData(pkg)
-bttinfo = batteryTemp.BatteryTempData()
-ctpinfo = cpuTemp.CpuTempData()
+bttinfo = battery_temperature.BatteryTempData()
+ctpinfo = cpu_temperature.CpuTempData()
 
 ecpu.start()
 

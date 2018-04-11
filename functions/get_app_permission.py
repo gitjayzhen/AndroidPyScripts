@@ -5,7 +5,7 @@ import json
 import os
 import sys
 
-from functions.utils import utils
+from utils import androiddebug
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -19,7 +19,7 @@ PATH = lambda p: os.path.abspath(p)
 def get_permission_list(package_name):
 
     permission_list = []
-    result_list = utils.shell("dumpsys package %s | %s android.permission" % (package_name, utils.find_util)).stdout.readlines()
+    result_list = androiddebug.shell("dumpsys package %s | %s android.permission" % (package_name, androiddebug.find_util)).stdout.readlines()
 
     for permission in result_list:
         permission_list.append(permission.strip())
@@ -27,12 +27,12 @@ def get_permission_list(package_name):
     return permission_list
 
 if __name__ == '__main__':
-    package_name = utils.get_current_package_name()
+    package_name = androiddebug.get_current_package_name()
     permission_list = get_permission_list(package_name)
     permission_json_file = file("permission.json")
     file_content = json.load(permission_json_file)["PermissList"]
 
-    if utils.system is "Windows":
+    if androiddebug.system is "Windows":
         f = open(PATH("%s/permission.txt" %os.getcwd()), "w")
         f.write("package: %s\n\n" %package_name)
         for permission in permission_list:

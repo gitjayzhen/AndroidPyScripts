@@ -3,7 +3,7 @@
 
 import os
 
-from functions.utils import utils
+from utils import androiddebug
 
 # app发生crash，未及时在logcat中抓取到有效log时，可通过该脚本获取到log，日志存放至crash_log目录
 
@@ -17,7 +17,7 @@ if not os.path.isdir(path):
 # 获取app发生crash的时间列表
 def get_crash_time_list():
     time_list = []
-    result_list = utils.shell("dumpsys dropbox | %s data_app_crash" % utils.find_util).stdout.readlines()
+    result_list = androiddebug.shell("dumpsys dropbox | %s data_app_crash" % androiddebug.find_util).stdout.readlines()
     for time in result_list:
         temp_list = time.split(" ")
         temp_time= []
@@ -29,10 +29,10 @@ def get_crash_time_list():
 
 
 def get_crash_log(time_list):
-    log_file = PATH("%s/crash_log/%s.txt" % (os.getcwd(), utils.timestamp()))
+    log_file = PATH("%s/crash_log/%s.txt" % (os.getcwd(), androiddebug.timestamp()))
     f = open(log_file, "w")
     for time in time_list:
-        cash_log = utils.shell("dumpsys dropbox --print %s" % time).stdout.read()
+        cash_log = androiddebug.shell("dumpsys dropbox --print %s" % time).stdout.read()
         f.write(cash_log)
     f.close()
 
